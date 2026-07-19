@@ -17,10 +17,10 @@ export default function CTA() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-heading text-3xl font-bold text-azul-escuro md:text-5xl leading-tight">
-            Pronto para regularizar seu negócio?
+            Pronto para desenvolver seu empreendimento com segurança ambiental?
           </h2>
           <p className="mt-5 text-lg text-gray-500">
-            Fale com um de nossos consultores e descubra a solução ambiental ideal para sua empresa.
+            Fale conosco e descubra a solução ambiental ideal para sua empresa.
           </p>
         </motion.div>
 

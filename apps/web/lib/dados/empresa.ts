@@ -11,10 +11,15 @@ export const empresa = {
   telefone: '(53) 99993-3730',
   endereco: 'Rio Grande do Sul, Brasil',
   redes: {
-    instagram: '',
-    linkedin: '',
+    instagram: 'https://www.instagram.com/verdaneconsultoria',
+    linkedin: 'https://www.linkedin.com/company/verdane-consultoria-ambiental/',
   },
   diferenciais: [
+    {
+      titulo: 'Atendemos em todo o Brasil',
+      descricao:
+        'Com foco no Rio Grande do Sul, nossa atuação é a nível nacional. Estamos onde você precisa.',
+    },
     {
       titulo: 'Experiência',
       descricao:

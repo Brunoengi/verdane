@@ -22,7 +22,7 @@ const TEXTOS = [
   </>,
 ];
 
-export default function Hero() {
+export default function HeroRotated() {
   const [textoIndice, setTextoIndice] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -41,10 +41,19 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${IMAGEM_FUNDO})` }}
-      />
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute bg-cover bg-center origin-center"
+          style={{
+            backgroundImage: `url(${IMAGEM_FUNDO})`,
+            width: '100vh',
+            height: '100vw',
+            top: 'calc(50% - 50vw)',
+            left: 'calc(50% - 50vh)',
+            transform: 'rotate(90deg)',
+          }}
+        />
+      </div>
 
       <div className="absolute inset-0 bg-black/50 z-[1]" />
 

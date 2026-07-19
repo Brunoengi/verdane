@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Leaf, Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { empresa } from '@/lib/dados/empresa';
 import { servicos } from '@/lib/dados/servicos';
 import { navegacao } from '@/lib/dados/navegacao';
@@ -11,7 +13,13 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-3">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Leaf className="h-7 w-7 text-verde-claro" />
+              <Image
+                src="/logo-semtexto-sembg.png"
+                alt="Verdane"
+                width={40}
+                height={46}
+                className="h-10 w-auto"
+              />
               <span className="font-heading text-xl font-bold text-white">
                 {empresa.nome}
               </span>
@@ -19,6 +27,26 @@ export default function Footer() {
             <p className="text-sm text-gray-300 leading-relaxed">
               {empresa.compromisso}
             </p>
+            <div className="flex gap-3 mt-4">
+              <a
+                href={empresa.redes.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-verde-claro transition-colors"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="h-4 w-4" />
+              </a>
+              <a
+                href={empresa.redes.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-verde-claro transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedinIn className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           <div>

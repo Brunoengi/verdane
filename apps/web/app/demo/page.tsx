@@ -27,6 +27,36 @@ export default function DemoPage() {
             </div>
             <ArrowRight className="h-5 w-5 text-gray-300 group-hover:text-verde-claro group-hover:translate-x-1 transition-all" />
           </Link>
+
+          <Link
+            href="/demo/parallax"
+            className="flex items-center justify-between p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-verde-claro/30 transition-all group"
+          >
+            <div>
+              <h2 className="font-heading text-lg font-semibold text-azul-escuro">
+                Parallax Scrolling
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">
+                4 variantes de efeito parallax para as seções da home
+              </p>
+            </div>
+            <ArrowRight className="h-5 w-5 text-gray-300 group-hover:text-verde-claro group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link
+            href="/demo/hero-rotated"
+            className="flex items-center justify-between p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-verde-claro/30 transition-all group"
+          >
+            <div>
+              <h2 className="font-heading text-lg font-semibold text-azul-escuro">
+                Hero com imagem rotacionada 90°
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">
+                Página principal completa com o Hero usando natureza-3.jfif rotacionada
+              </p>
+            </div>
+            <ArrowRight className="h-5 w-5 text-gray-300 group-hover:text-verde-claro group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </div>
     </section>
