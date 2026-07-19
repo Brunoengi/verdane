@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, MessageCircle } from 'lucide-react';
 import type { ServicoCategoria } from '@/lib/dados/servicos';
 import { tipoLucide } from '@/lib/icones';
 import { staggerContainer, fadeInUp } from '@/lib/motion';
@@ -34,12 +34,23 @@ export default function ServicoDetalhe({
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-verde-claro/10 mb-6">
               <Icone className="h-8 w-8 text-verde-claro" />
             </div>
-            <h1 className="font-heading text-4xl font-extrabold text-azul-escuro md:text-5xl">
-              {servico.titulo}
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg text-gray-500">
-              {servico.descricao}
-            </p>
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div>
+                <h1 className="font-heading text-4xl font-extrabold text-azul-escuro md:text-5xl">
+                  {servico.titulo}
+                </h1>
+                <p className="mt-4 max-w-2xl text-lg text-gray-500">
+                  {servico.descricao}
+                </p>
+              </div>
+              <Link
+                href="/contato"
+                className="inline-flex shrink-0 items-center gap-2 rounded-full bg-verde-claro px-6 py-3 text-sm font-semibold text-white hover:bg-verde-escuro transition-colors whitespace-nowrap"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Fale com um consultor
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

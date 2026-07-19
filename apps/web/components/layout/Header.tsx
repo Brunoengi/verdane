@@ -13,13 +13,19 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
+  const isHome = pathname === '/';
+
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [isHome]);
 
   const { scrollY } = useScroll();
 
@@ -29,6 +35,7 @@ export default function Header() {
     ['0px 0px 0px rgba(0,0,0,0)', '0px 2px 16px rgba(0,0,0,0.06)']
   );
   const logoScale = useTransform(scrollY, [0, 80], [1.5, 0.6]);
+  const botaoScale = useTransform(scrollY, [0, 80], [1.5, 0.85]);
 
   const backgroundColor = useTransform(
     scrollY,
@@ -46,25 +53,32 @@ export default function Header() {
   return (
     <motion.header
       className={`fixed top-0 z-50 w-full overflow-hidden transition-[height] duration-300 ${scrolled ? 'h-20' : 'h-[200px]'}`}
-      style={{ backgroundColor, boxShadow: headerShadow }}
+      style={{
+        backgroundColor: isHome ? backgroundColor : 'rgba(255, 255, 255, 1)',
+        boxShadow: isHome ? headerShadow : '0px 2px 16px rgba(0,0,0,0.06)',
+      }}
     >
       <motion.div
         className={`mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 h-full transition-all duration-300 ${scrolled ? 'py-1' : 'py-5'}`}
       >
         <Link href="/" className="flex items-center gap-2">
           <motion.div
-            style={{ scale: logoScale, originX: 0, originY: 0.5 }}
+            style={{
+              scale: isHome ? logoScale : 0.6,
+              originX: 0,
+              originY: 0.5,
+            }}
             className="relative flex items-center"
           >
             <motion.div
               className={`invisible shrink-0 transition-[width,height] duration-300 ${scrolled ? 'w-12 h-12' : 'w-40 h-40'}`}
             />
             <motion.div
-              style={{ opacity: logoComTextoOpacity }}
+              style={{ opacity: isHome ? logoComTextoOpacity : 0 }}
               className="absolute inset-0 flex items-center"
             >
               <Image
-                src="/logo-comtexto-sembg-linhabranca.png"
+                src="/logo-comtexto-sembg-semlinhabrancav2.png"
                 alt="Verdane"
                 width={500}
                 height={500}
@@ -74,7 +88,7 @@ export default function Header() {
               />
             </motion.div>
             <motion.div
-              style={{ opacity: logoSemTextoOpacity }}
+              style={{ opacity: isHome ? logoSemTextoOpacity : 1 }}
               className="absolute inset-0 flex items-center"
             >
               <Image
@@ -88,6 +102,18 @@ export default function Header() {
               />
             </motion.div>
           </motion.div>
+          <motion.span
+            style={{
+              opacity: isHome ? logoSemTextoOpacity : 1,
+              backgroundImage: 'linear-gradient(to right, #3e942b, #6fb030, #68c9e9, #185c99)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+            }}
+            className="font-heading text-lg font-bold whitespace-nowrap"
+          >
+            Verdane
+          </motion.span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -115,7 +141,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <motion.div className="flex items-center gap-3" style={{ scale: logoScale }}>
+        <motion.div className="flex items-center gap-3" style={{ scale: isHome ? botaoScale : 0.85 }}>
           <Link href="/contato">
             <span className="inline-flex items-center justify-center rounded-full font-semibold px-5 py-2 text-sm border-2 border-verde-claro text-verde-claro hover:bg-verde-claro hover:text-white transition-colors cursor-pointer">
               Solicitar Orçamento

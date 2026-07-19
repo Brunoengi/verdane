@@ -7,7 +7,8 @@ export const empresa = {
   compromisso:
     'Temos compromisso em executar um trabalho ágil e eficiente, com qualidade e responsabilidade ambiental.',
   email: 'verdaneconsultoria@gmail.com',
-  whatsapp: '',
+  whatsapp: '5553999933730',
+  telefone: '(53) 99993-3730',
   endereco: 'Rio Grande do Sul, Brasil',
   redes: {
     instagram: '',

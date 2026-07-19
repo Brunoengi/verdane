@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Leaf, Mail, MapPin } from 'lucide-react';
+import { Leaf, Mail, MapPin, Phone } from 'lucide-react';
 import { empresa } from '@/lib/dados/empresa';
 import { servicos } from '@/lib/dados/servicos';
 import { navegacao } from '@/lib/dados/navegacao';
@@ -49,6 +49,15 @@ export default function Footer() {
                   className="text-sm text-gray-300 hover:text-verde-claro transition-colors"
                 >
                   {empresa.email}
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <Phone className="h-5 w-5 text-verde-claro mt-0.5 shrink-0" />
+                <a
+                  href={`tel:+55${empresa.whatsapp}`}
+                  className="text-sm text-gray-300 hover:text-verde-claro transition-colors"
+                >
+                  {empresa.telefone}
                 </a>
               </li>
               <li className="flex items-start gap-2">

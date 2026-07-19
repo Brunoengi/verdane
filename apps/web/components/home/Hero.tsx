@@ -1,44 +1,51 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { empresa } from '@/lib/dados/empresa';
 
-const SLIDES = [
-  'https://greenviewgv.com.br/wp-content/uploads/2023/08/greenview-engenharia-e-consultoria-ambiental-bg-01.jpg',
-  'https://greenviewgv.com.br/wp-content/uploads/2023/08/greenview-engenharia-e-consultoria-ambiental-bg-02.jpg',
-  'https://greenviewgv.com.br/wp-content/uploads/2023/08/greenview-engenharia-e-consultoria-ambiental-bg-03.jpg',
-  'https://greenviewgv.com.br/wp-content/uploads/2023/08/greenview-engenharia-e-consultoria-ambiental-bg-04.jpg',
-  'https://greenviewgv.com.br/wp-content/uploads/2023/08/greenview-engenharia-e-consultoria-ambiental-bg-05.jpg',
+const IMAGEM_FUNDO =
+  'https://greenviewgv.com.br/wp-content/uploads/2023/08/greenview-engenharia-e-consultoria-ambiental-bg-01.jpg';
+
+const TEXTOS = [
+  <>
+    Nosso compromisso é{' '}
+    <span className="text-verde-claro">proteger o meio ambiente</span>.
+    <br />O <span className="text-verde-claro">
+    crescimento sustentável do seu negócio</span> começa aqui.
+  </>,
+  <>
+    Atendemos em <span className="text-verde-claro">todo o Brasil</span>,
+    <br />com foco no{' '}
+    <span className="text-verde-claro whitespace-nowrap">Rio Grande do Sul</span>.
+  </>,
 ];
 
-const INTERVALO = 5000;
-
 export default function Hero() {
-  const [indice, setIndice] = useState(0);
+  const [textoIndice, setTextoIndice] = useState(0);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndice((prev) => (prev + 1) % SLIDES.length);
-    }, INTERVALO);
-    return () => clearInterval(timer);
-  }, []);
+    const agendar = () => {
+      const intervalo = textoIndice === 0 ? 4000 : 6000;
+      timeoutRef.current = setTimeout(() => {
+        setTextoIndice((prev) => (prev + 1) % TEXTOS.length);
+      }, intervalo);
+    };
+
+    agendar();
+
+    return () => clearTimeout(timeoutRef.current);
+  }, [textoIndice]);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={indice}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${SLIDES[indice]})` }}
-        />
-      </AnimatePresence>
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${IMAGEM_FUNDO})` }}
+      />
 
       <div className="absolute inset-0 bg-black/50 z-[1]" />
 
@@ -102,17 +109,18 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-1 flex-col justify-center text-center md:text-left mt-12 md:mt-0 md:pl-8">
-          <motion.p
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
-            className="font-heading text-3xl font-bold text-white md:text-4xl lg:text-5xl leading-tight"
-          >
-            Nosso compromisso é{' '}
-            <span className="text-verde-claro">proteger o meio ambiente</span>.
-            <br />O <span className="text-verde-claro">crescimento
-            sustentável do seu negócio</span> começa aqui.
-          </motion.p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={textoIndice}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="font-heading text-3xl font-bold text-white md:text-4xl lg:text-5xl leading-tight"
+            >
+              {TEXTOS[textoIndice]}
+            </motion.p>
+          </AnimatePresence>
         </div>
       </div>
 

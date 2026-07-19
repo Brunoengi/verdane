@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { empresa } from '@/lib/dados/empresa';
-import Botao from '@/components/ui/Botao';
 
 export default function ContatoPage() {
   return (
@@ -70,6 +70,7 @@ export default function ContatoPage() {
                     </p>
                   </div>
                 </div>
+
               </div>
             </motion.div>
 
@@ -82,60 +83,27 @@ export default function ContatoPage() {
             >
               <div className="rounded-2xl border border-gray-100 bg-white p-6 md:p-8 shadow-sm">
                 <h3 className="font-heading text-xl font-semibold text-azul-escuro mb-6">
-                  Envie sua mensagem
+                  Como prefere falar com a gente?
                 </h3>
 
-                <form className="space-y-5">
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        Nome
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Seu nome"
-                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:border-verde-claro focus:ring-2 focus:ring-verde-claro/20 outline-none transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        E-mail
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="seu@email.com"
-                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:border-verde-claro focus:ring-2 focus:ring-verde-claro/20 outline-none transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Assunto
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Qual o assunto?"
-                      className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:border-verde-claro focus:ring-2 focus:ring-verde-claro/20 outline-none transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Mensagem
-                    </label>
-                    <textarea
-                      rows={5}
-                      placeholder="Descreva sua necessidade..."
-                      className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:border-verde-claro focus:ring-2 focus:ring-verde-claro/20 outline-none transition-all resize-none"
-                    />
-                  </div>
-
-                  <Botao variante="primario" tamanho="grande" className="w-full">
-                    <Send className="mr-2 h-5 w-5" />
-                    Enviar Mensagem
-                  </Botao>
-                </form>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={`https://wa.me/${empresa.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-[#25D366] bg-[#25D366] px-6 py-3 text-sm font-semibold text-white hover:bg-[#22c35e] transition-colors"
+                  >
+                    <FaWhatsapp className="h-5 w-5" />
+                    Falar no WhatsApp
+                  </a>
+                  <a
+                    href={`mailto:${empresa.email}`}
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-verde-claro bg-verde-claro px-6 py-3 text-sm font-semibold text-white hover:bg-verde-escuro transition-colors"
+                  >
+                    <Mail className="h-5 w-5" />
+                    Enviar E-mail
+                  </a>
+                </div>
               </div>
             </motion.div>
           </div>
