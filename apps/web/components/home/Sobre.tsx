@@ -8,11 +8,12 @@ import TituloSecao from '@/components/ui/TituloSecao';
 
 export default function Sobre() {
   return (
-    <section className="bg-white py-20 md:py-28">
+    <div className="py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <TituloSecao
           titulo="Sobre a Verdane"
           descricao={empresa.descricao}
+          className="[&_h2]:text-white [&_p]:text-white/70"
         />
 
         <motion.div
@@ -24,16 +25,16 @@ export default function Sobre() {
         >
           <motion.div
             variants={fadeInUp}
-            className="flex gap-5 p-8 rounded-2xl bg-white border border-gray-100 shadow-sm"
+            className="flex gap-5 p-8 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10"
           >
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-verde-claro/10">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-verde-claro/20">
               <Leaf className="h-7 w-7 text-verde-claro" />
             </div>
             <div>
-              <h3 className="font-heading text-xl font-semibold text-azul-escuro">
+              <h3 className="font-heading text-xl font-semibold text-white">
                 Nossa Missão
               </h3>
-              <p className="mt-3 text-gray-600 leading-relaxed">
+              <p className="mt-3 text-white/70 leading-relaxed">
                 Oferecer soluções ambientais inteligentes, com excelência técnica e compromisso com a sustentabilidade, promovendo o equilíbrio entre desenvolvimento e meio ambiente.
               </p>
             </div>
@@ -41,22 +42,22 @@ export default function Sobre() {
 
           <motion.div
             variants={fadeInUp}
-            className="flex gap-5 p-8 rounded-2xl bg-white border border-gray-100 shadow-sm"
+            className="flex gap-5 p-8 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10"
           >
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-verde-claro/10">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-verde-claro/20">
               <Target className="h-7 w-7 text-verde-claro" />
             </div>
             <div>
-              <h3 className="font-heading text-xl font-semibold text-azul-escuro">
+              <h3 className="font-heading text-xl font-semibold text-white">
                 Nosso Compromisso
               </h3>
-              <p className="mt-3 text-gray-600 leading-relaxed">
+              <p className="mt-3 text-white/70 leading-relaxed">
                 {empresa.compromisso}
               </p>
             </div>
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 }
