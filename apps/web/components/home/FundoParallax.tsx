@@ -15,7 +15,7 @@ export default function FundoParallax({ children }: FundoParallaxProps) {
     offset: ['start end', 'end start'],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['-35%', '35%']);
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
 
   return (
     <section ref={ref} className="relative overflow-hidden">

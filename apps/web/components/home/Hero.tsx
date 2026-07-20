@@ -107,7 +107,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <div className="flex flex-1 flex-col justify-center text-center md:text-left mt-12 md:mt-0 md:pl-8">
+        <div className="flex flex-1 flex-col justify-center text-center md:text-left mt-12 md:mt-0 md:pl-8 min-h-[18rem] md:min-h-0">
           <AnimatePresence mode="wait">
             <motion.p
               key={textoIndice}
