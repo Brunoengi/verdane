@@ -15,17 +15,26 @@ export default function Header() {
 
   const isHome = pathname === '/';
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (!isHome) {
+    if (isMobile || !isHome) {
       setScrolled(true);
       return;
     }
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [isHome]);
+  }, [isHome, isMobile]);
 
   const { scrollY } = useScroll();
 
@@ -52,10 +61,10 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 z-50 w-full overflow-hidden transition-[height] duration-300 ${scrolled ? 'h-20' : 'h-[200px]'}`}
+      className={`fixed top-0 z-50 w-full overflow-visible md:overflow-hidden transition-[height] duration-300 ${scrolled ? 'h-20' : 'h-[200px]'}`}
       style={{
-        backgroundColor: isHome ? backgroundColor : 'rgba(255, 255, 255, 1)',
-        boxShadow: isHome ? headerShadow : '0px 2px 16px rgba(0,0,0,0.06)',
+        backgroundColor: isHome && !isMobile ? backgroundColor : 'rgba(255, 255, 255, 1)',
+        boxShadow: isHome && !isMobile ? headerShadow : '0px 2px 16px rgba(0,0,0,0.06)',
       }}
     >
       <motion.div
@@ -64,7 +73,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <motion.div
             style={{
-              scale: isHome ? logoScale : 0.6,
+              scale: isHome && !isMobile ? logoScale : 0.6,
               originX: 0,
               originY: 0.5,
             }}
@@ -74,7 +83,7 @@ export default function Header() {
               className={`invisible shrink-0 transition-[width,height] duration-300 ${scrolled ? 'w-12 h-12' : 'w-40 h-40'}`}
             />
             <motion.div
-              style={{ opacity: isHome ? logoComTextoOpacity : 0 }}
+              style={{ opacity: isHome && !isMobile ? logoComTextoOpacity : 0 }}
               className="absolute inset-0 flex items-center"
             >
               <Image
@@ -88,7 +97,7 @@ export default function Header() {
               />
             </motion.div>
             <motion.div
-              style={{ opacity: isHome ? logoSemTextoOpacity : 1 }}
+              style={{ opacity: isHome && !isMobile ? logoSemTextoOpacity : 1 }}
               className="absolute inset-0 flex items-center"
             >
               <Image
@@ -104,7 +113,7 @@ export default function Header() {
           </motion.div>
           <motion.span
             style={{
-              opacity: isHome ? logoSemTextoOpacity : 1,
+              opacity: isHome && !isMobile ? logoSemTextoOpacity : 1,
               backgroundImage: 'linear-gradient(to right, #3e942b, #6fb030, #68c9e9, #185c99)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
@@ -141,22 +150,22 @@ export default function Header() {
           ))}
         </nav>
 
-        <motion.div className="flex items-center gap-3" style={{ scale: isHome ? botaoScale : 0.85 }}>
+        <motion.div className="flex items-center gap-3" style={{ scale: isHome && !isMobile ? botaoScale : 0.85 }}>
           <Link href="/contato">
-            <span className="inline-flex items-center justify-center rounded-full font-semibold px-5 py-2 text-sm border-2 border-verde-claro text-verde-claro hover:bg-verde-claro hover:text-white transition-colors cursor-pointer">
+            <span className="inline-flex items-center justify-center text-center rounded-full font-semibold px-5 py-2 text-sm border-2 border-verde-claro text-verde-claro hover:bg-verde-claro hover:text-white transition-colors cursor-pointer">
               Solicitar Orçamento
             </span>
           </Link>
 
           <button
-            className="md:hidden p-2"
+            className={`md:hidden transition-all ${scrolled ? 'p-1' : 'p-2'}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Abrir menu"
           >
             {mobileOpen ? (
-              <X className="h-6 w-6 text-azul-escuro" />
+              <X className={`transition-all ${scrolled ? 'h-5 w-5' : 'h-6 w-6'} text-azul-escuro`} />
             ) : (
-              <Menu className="h-6 w-6 text-azul-escuro" />
+              <Menu className={`transition-all ${scrolled ? 'h-5 w-5' : 'h-6 w-6'} text-azul-escuro`} />
             )}
           </button>
         </motion.div>
@@ -167,6 +176,7 @@ export default function Header() {
         onFechar={() => setMobileOpen(false)}
         navegacao={navegacao}
         pathname={pathname}
+        scrolled={scrolled}
       />
     </motion.header>
   );

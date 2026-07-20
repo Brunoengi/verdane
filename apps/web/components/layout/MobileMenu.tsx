@@ -13,6 +13,7 @@ interface MobileMenuProps {
   onFechar: () => void;
   navegacao: NavegacaoItem[];
   pathname: string;
+  scrolled: boolean;
 }
 
 export default function MobileMenu({
@@ -20,6 +21,7 @@ export default function MobileMenu({
   onFechar,
   navegacao,
   pathname,
+  scrolled,
 }: MobileMenuProps) {
   return (
     <AnimatePresence>
@@ -31,7 +33,7 @@ export default function MobileMenu({
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           className="overflow-hidden bg-white shadow-lg md:hidden"
         >
-          <nav className="flex flex-col px-4 py-4 gap-2">
+          <nav className={`flex flex-col transition-all ${scrolled ? 'px-3 py-2 gap-1' : 'px-4 py-4 gap-2'}`}>
             {navegacao.map((item, i) => (
               <motion.div
                 key={item.href}
@@ -42,7 +44,9 @@ export default function MobileMenu({
                 <Link
                   href={item.href}
                   onClick={onFechar}
-                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                  className={`block rounded-lg font-medium transition-all ${
+                    scrolled ? 'px-3 py-2 text-sm' : 'px-4 py-3 text-base'
+                  } ${
                     pathname === item.href
                       ? 'bg-verde-claro/10 text-verde-escuro'
                       : 'text-gray-700 hover:bg-gray-50 hover:text-verde-claro'
@@ -60,7 +64,9 @@ export default function MobileMenu({
               <Link
                 href="/contato"
                 onClick={onFechar}
-                className="block mt-2 px-4 py-3 rounded-full text-center font-semibold bg-verde-claro text-white hover:bg-verde-escuro transition-colors"
+                className={`block text-center font-semibold bg-verde-claro text-white hover:bg-verde-escuro transition-all rounded-full ${
+                  scrolled ? 'mt-1 px-3 py-2 text-sm' : 'mt-2 px-4 py-3 text-base'
+                }`}
               >
                 Solicitar Orçamento
               </Link>
