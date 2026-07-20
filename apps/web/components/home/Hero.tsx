@@ -48,7 +48,7 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-black/50 z-[1]" />
 
-      <div className="relative z-10 flex flex-col md:flex-row w-full max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-0">
+      <div className="relative z-10 flex flex-col md:flex-row w-full max-w-6xl mx-auto px-6 md:px-8 py-24 md:pt-[120px] md:pb-0">
         <div className="flex flex-1 flex-col justify-center text-center md:text-left">
           <div className="flex w-fit flex-col mx-auto md:mx-0">
             <motion.h1
