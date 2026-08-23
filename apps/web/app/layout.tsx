@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     'Verdane',
     'Rio Grande do Sul',
   ],
+  verification: {
+    google: 'XcpkcOjVqi3MLxQJRAJdNMGzna4luNusPwuwxEl99AA',
+  },
 };
 
 export default function RootLayout({
