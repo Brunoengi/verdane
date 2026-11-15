@@ -10,7 +10,7 @@ const IMAGEM_FUNDO = '/natureza-3.jfif';
 
 const TEXTOS = [
   <>
-    Nosso compromisso é{' '}
+    O nosso compromisso é{' '}
     <span className="text-verde-claro">proteger o meio ambiente</span>.
     <br />O <span className="text-verde-claro">
     crescimento sustentável do seu negócio</span> começa aqui.
