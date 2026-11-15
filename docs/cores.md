@@ -1,4 +1,4 @@
-Tonalidades de azul:
+Tons de azul:
 
 Azul claro:
 HEX: #68c9e9
